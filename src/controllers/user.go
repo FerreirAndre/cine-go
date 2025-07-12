@@ -28,13 +28,17 @@ func (uc *UserController) CreateUser(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&userDto)
 	if err != nil {
-		c.Error(err)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "Dados invalidos",
+		})
 		return
 	}
 
 	err = uc.service.CreateUser(userDto.Email, userDto.Password)
 	if err != nil {
-		c.Error(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Erro ao criar usuario.",
+		})
 		return
 	}
 

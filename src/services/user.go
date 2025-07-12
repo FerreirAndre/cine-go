@@ -1,9 +1,12 @@
 package services
 
 import (
-	"cine-resenha-go/src/dtos"
+	"cine-resenha-go/src/entities"
 	"cine-resenha-go/src/repositories"
 	"cine-resenha-go/src/utils/context"
+	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserService struct {
@@ -15,17 +18,32 @@ func NewUserService(repo *repositories.UserRepository) *UserService {
 }
 
 func (service *UserService) CreateUser(email, password string) error {
-	user := dtos.User{
-		Email:    email,
-		Password: password,
+	hashedPswd, err := HashPassword(password)
+	if err != nil {
+		return err
+	}
+
+	user := entities.User{
+		Email:     email,
+		Password:  hashedPswd,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 
 	contextServer := context.CreateContextServerWithTimeout()
 
-	err := service.repo.Create(contextServer, user)
+	err = service.repo.Create(contextServer, user)
 	if err != nil {
 		return err
 	}
 
 	return nil
+}
+
+func HashPassword(password string) (string, error) {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
+	}
+	return string(hashedPassword), err
 }
