@@ -5,6 +5,7 @@ import (
 
 	"github.com/ferreirandre/cine-go/internal/domain"
 	"github.com/ferreirandre/cine-go/internal/service"
+	"github.com/ferreirandre/cine-go/internal/validation"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -51,6 +52,13 @@ func (h *movieHandler) Create(c *gin.Context) {
 		return
 	}
 
+	if err := validation.ValidateMovie(&movie); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error:": err.Error(),
+		})
+		return
+	}
+
 	err := h.service.Create(c.Request.Context(), &movie)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
@@ -72,6 +80,13 @@ func (h *movieHandler) Update(c *gin.Context) {
 	err = c.ShouldBindJSON(&movie)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := validation.ValidateMovie(&movie); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error:": err.Error(),
+		})
 		return
 	}
 
@@ -101,3 +116,19 @@ func (h *movieHandler) Delete(c *gin.Context) {
 	c.Status(http.StatusNoContent)
 }
 
+func (h *movieHandler) ToggleWatched(c *gin.Context) {
+	idParam := c.Param("id")
+	id, err := primitive.ObjectIDFromHex(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	err = h.service.ToggleWatched(c.Request.Context(), id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.Status(http.StatusNoContent)
+}

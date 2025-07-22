@@ -109,3 +109,17 @@ func (r *movieRepository) Update(ctx context.Context, movie *domain.Movie) error
 
 	return nil
 }
+
+// ToggleWatched implements domain.MovieRepository.
+func (r *movieRepository) ToggleWatched(ctx context.Context, id primitive.ObjectID) error {
+	filter := bson.M{"_id": id}
+	update := bson.M{
+		"$bit": bson.M{
+			"watched": bson.M{"xor": 1},
+		},
+	}
+
+	result := r.collection.FindOneAndUpdate(ctx, filter, update)
+
+	return result.Err()
+}

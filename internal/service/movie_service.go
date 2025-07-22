@@ -13,6 +13,7 @@ type MovieService interface {
 	Create(ctx context.Context, movie *domain.Movie) error
 	Update(ctx context.Context, movie *domain.Movie) error
 	Delete(ctx context.Context, id primitive.ObjectID) error
+	ToggleWatched(ctx context.Context, id primitive.ObjectID) error
 }
 
 func NewMovieService(repo domain.MovieRepository) MovieService {
@@ -21,6 +22,11 @@ func NewMovieService(repo domain.MovieRepository) MovieService {
 
 type movieService struct {
 	repo domain.MovieRepository
+}
+
+// ToggleWatched implements MovieService.
+func (m *movieService) ToggleWatched(ctx context.Context, id primitive.ObjectID) error {
+	return m.repo.ToggleWatched(ctx, id)
 }
 
 // Create implements MovieService.

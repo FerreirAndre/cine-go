@@ -37,6 +37,7 @@ func main() {
 		movies.POST("", movieHandler.Create)
 		movies.PUT("/:id", movieHandler.Update)
 		movies.DELETE("/:id", movieHandler.Delete)
+		movies.PATCH("/:id/watched", movieHandler.ToggleWatched)
 	}
 
 	if err := r.Run(":8080"); err != nil {
