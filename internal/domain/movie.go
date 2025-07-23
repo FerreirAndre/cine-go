@@ -25,5 +25,4 @@ type MovieRepository interface {
 	Create(ctx context.Context, movie *Movie) error
 	Update(ctx context.Context, movie *Movie) error
 	Delete(ctx context.Context, id primitive.ObjectID) error
-	ToggleWatched(ctx context.Context, id primitive.ObjectID) error
 }

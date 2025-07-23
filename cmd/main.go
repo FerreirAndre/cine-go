@@ -7,6 +7,7 @@ import (
 	"github.com/ferreirandre/cine-go/internal/handler"
 	"github.com/ferreirandre/cine-go/internal/repository"
 	"github.com/ferreirandre/cine-go/internal/service"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -30,11 +31,17 @@ func main() {
 
 	r := gin.Default()
 
+	r.Use(cors.Default())
+
+	r.OPTIONS("/*path", func(c *gin.Context) {
+		c.Status(204)
+	})
+
 	movies := r.Group("/movies")
 	{
-		movies.GET("", movieHandler.GetAll)
+		movies.GET("/", movieHandler.GetAll)
 		movies.GET("/:id", movieHandler.GetById)
-		movies.POST("", movieHandler.Create)
+		movies.POST("/", movieHandler.Create)
 		movies.PUT("/:id", movieHandler.Update)
 		movies.DELETE("/:id", movieHandler.Delete)
 		movies.PATCH("/:id/watched", movieHandler.ToggleWatched)

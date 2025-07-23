@@ -26,7 +26,13 @@ type movieService struct {
 
 // ToggleWatched implements MovieService.
 func (m *movieService) ToggleWatched(ctx context.Context, id primitive.ObjectID) error {
-	return m.repo.ToggleWatched(ctx, id)
+	movie, err := m.repo.GetById(ctx, id)
+	if err != nil {
+		return err
+	}
+
+	movie.Watched = !movie.Watched
+	return m.repo.Update(ctx, movie)
 }
 
 // Create implements MovieService.
