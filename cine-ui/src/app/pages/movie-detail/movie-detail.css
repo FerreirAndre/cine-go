@@ -13,13 +13,12 @@
   display: flex;
   gap: 2rem;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  flex-wrap: wrap;
   align-items: flex-start;
 }
 
 .movie-cover {
-  width: auto;
   height: 400px;
+  width: auto;
   max-width: 100%;
   object-fit: cover;
   border-radius: 8px;
@@ -33,28 +32,36 @@
 }
 
 .movie-info h2 {
-  margin-top: 0;
+  margin: 0;
   font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
-.movie-info .writer {
-  color: #ccc;
+.movie-info .duration {
+  margin-top: 0.5rem;
   font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  color: #bbb;
+}
+
+.movie-info .director,
+.movie-info .who-chose {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #bbb;
 }
 
 .movie-info .summary {
+  margin-top: 1.5rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
   font-size: 1rem;
+  color: #ddd;
 }
 
 .actions {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-top: auto;
+  margin-top: 2rem;
 }
 
 .edit-button,

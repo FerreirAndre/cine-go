@@ -1,77 +1,77 @@
 .form-container {
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #1a1a1a;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    color: #f0f0f0;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #f0f0f0;
 }
 
 .form-label {
-    display: flex;
-    flex-direction: column;
-    font-weight: 600;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 0.5rem;
 }
 
 .form-input,
 .form-textarea {
-    padding: 0.75rem;
-    border-radius: 6px;
-    border: none;
-    background-color: #2a2a2a;
-    color: white;
-    font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 1rem;
 }
 
 .form-input:focus,
 .form-textarea:focus {
-    outline: 2px solid #5e9cff;
-    background-color: #333;
+  outline: 2px solid #5e9cff;
+  background-color: #333;
 }
 
 .form-textarea {
-    min-height: 120px;
-    resize: vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
 .form-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #5e9cff;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white;
+  padding: 0.75rem 1.5rem;
+  background-color: #5e9cff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
 }
 
 .form-button:disabled {
-    background-color: #888;
-    cursor: not-allowed;
+  background-color: #888;
+  cursor: not-allowed;
 }
 
 .form-button:hover:not(:disabled) {
-    background-color: #4a8de4;
+  background-color: #4a8de4;
 }
 
 .secondary {
-    background-color: transparent;
-    border: 1px solid #888;
-    color: #f0f0f0;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: border-color 0.3s ease, color 0.3s ease;
+  background-color: transparent;
+  border: 1px solid #888;
+  color: #f0f0f0;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .secondary:hover {
-    color: white;
-    border-color: white;
+  color: white;
+  border-color: white;
 }

@@ -15,8 +15,13 @@
         class="cover"
         routerLink="/movies/{{ movie.ID }}"
       />
-      <h3>{{ movie.title }} ({{ movie.release_year }})</h3>
-      <h2>👤 {{ movie.who_chose }}</h2>
+        <button (click)="toggleWatched(movie.ID)" class="toggle-button">
+      @if(movie.watched){
+          ✅ Já visto
+        }@else {
+          ❌ Não visto
+      }
+        </button>
       <footer class="actions">
         <button class="edit-button" (click)="edit(movie.ID)">Editar</button>
         <button class="delete-button" (click)="delete(movie.ID)">

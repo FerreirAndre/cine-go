@@ -55,7 +55,7 @@ export class MovieForm implements OnInit {
 
     if (this.isEditMode && this.movieId) {
       this.movieService.update(this.movieId, this.form.value).subscribe(() => {
-        this.router.navigate(['movies']);
+        this.router.navigate(['movies/']);
       });
     } else {
       this.movieService.create(this.form.value).subscribe(() => {

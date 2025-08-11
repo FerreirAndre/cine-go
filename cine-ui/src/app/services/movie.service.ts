@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class MovieService {
   private apiUrl = 'http://localhost:8080/movies/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.apiUrl);
@@ -27,5 +27,9 @@ export class MovieService {
 
   delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}${id}`);
+  }
+
+  toggleWatched(id: string): Observable<void> {
+    return this.http.patch<void>(`${this.apiUrl}${id}/watched`, null);
   }
 }

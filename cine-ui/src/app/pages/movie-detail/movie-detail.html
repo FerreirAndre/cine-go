@@ -1,25 +1,26 @@
 <main class="container movie-detail-container">
   @if (loading) {
-  <p>Carregando filme...</p>
+    <p>Carregando filme...</p>
   } @else if (error) {
-  <p>Erro ao carregar o filme.</p>
+    <p>Erro ao carregar o filme.</p>
   } @else {
-  <article class="movie-detail-card">
-    <img [src]="movie?.cover_link" [alt]="movie?.title" class="movie-cover" />
+    <article class="movie-detail-card">
+      <img [src]="movie?.cover_link" [alt]="movie?.title" class="movie-cover" />
 
-    <div class="movie-info">
-      <h2>{{ movie?.title }} ({{ movie?.release_year }})</h2>
-      <h4 class="writer">por {{ movie?.director }}</h4>
-      <p class="summary">{{ movie?.summary }}</p>
+      <div class="movie-info">
+        <h2>{{ movie?.title }} ({{ movie?.release_year }})</h2>
+        <p class="duration">Duração: {{ movie?.duration }} min</p>
+        <p class="director">Diretor: {{ movie?.director }}</p>
+        <p class="who-chose">Indicado por: {{ movie?.who_chose }}</p>
+        <p class="summary">{{ movie?.summary }}</p>
 
-      <footer class="actions">
-        <button class="edit-button" (click)="edit(movie?.ID)">Edit</button>
-        <button class="delete-button" (click)="delete(movie?.ID)">
-          Delete
-        </button>
-        <a routerLink="/movies" class="secondary">Voltar</a>
-      </footer>
-    </div>
-  </article>
+        <footer class="actions">
+          <button class="edit-button" (click)="edit(movie?.ID)">Editar</button>
+          <button class="delete-button" (click)="delete(movie?.ID)">Excluir</button>
+          <a routerLink="/movies" class="secondary">Voltar</a>
+        </footer>
+      </div>
+    </article>
   }
 </main>
+

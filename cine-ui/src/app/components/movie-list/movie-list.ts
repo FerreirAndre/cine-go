@@ -19,6 +19,10 @@ export class MovieList implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
+    this.loadMovies();
+  }
+
+  loadMovies() {
     this.movieService.getAll().subscribe({
       next: (data) => {
         this.movies = data;
@@ -47,5 +51,13 @@ export class MovieList implements OnInit {
         },
       });
     }
+  }
+
+  toggleWatched(id: string | undefined) {
+    if (!id) return;
+
+    this.movieService.toggleWatched(id).subscribe({
+      next: () => { this.loadMovies(); }
+    });
   }
 }
