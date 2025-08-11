@@ -1,0 +1,34 @@
+<main class="container">
+  <h2>Cine Resenha</h2>
+  @if(loading) {
+  <p>Carregando filmes...</p>
+  }@else if(error) {
+  <p>erro.</p>
+  }
+
+  <div class="grid">
+    @for(movie of movies;track movie.ID){
+    <article class="movie-card">
+      <img
+        [src]="movie.cover_link"
+        [alt]="movie.title"
+        class="cover"
+        routerLink="/movies/{{ movie.ID }}"
+      />
+      <h3>{{ movie.title }} ({{ movie.release_year }})</h3>
+      <h2>👤 {{ movie.who_chose }}</h2>
+      <footer class="actions">
+        <button class="edit-button" (click)="edit(movie.ID)">Editar</button>
+        <button class="delete-button" (click)="delete(movie.ID)">
+          Excluir
+        </button>
+      </footer>
+    </article>
+    }
+  </div>
+
+  @if(!loading && movies.length ===0) {
+  <p>nenhum filme encontrado.</p>
+  }
+  <a routerLink="/movies/new" class="contrast">Novo Filme</a>
+</main>

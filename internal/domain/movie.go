@@ -13,7 +13,6 @@ type Movie struct {
 	CoverLink   string             `bson:"cover_link" json:"cover_link" validate:"url"`
 	WhoChose    string             `bson:"who_chose" json:"who_chose" validate:"required"`
 	ReleaseYear int                `bson:"release_year" json:"release_year" validate:"gte=1887,lte=2100"`
-	WatchedDate CustomDate         `bson:"watched_date" json:"watched_date"`
 	Rating      float32            `bson:"rating" json:"rating" validate:"gte=0,lte=10"`
 	Duration    int                `bson:"duration" json:"duration" validate:"gt=0"`
 	Watched     bool               `bson:"watched" json:"watched"`

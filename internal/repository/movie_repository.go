@@ -92,7 +92,6 @@ func (r *movieRepository) Update(ctx context.Context, movie *domain.Movie) error
 			"cover_link":   movie.CoverLink,
 			"who_chose":    movie.WhoChose,
 			"release_year": movie.ReleaseYear,
-			"watched_date": movie.WatchedDate,
 			"rating":       movie.Rating,
 			"duration":     movie.Duration,
 			"watched":      movie.Watched,
